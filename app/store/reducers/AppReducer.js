@@ -1,0 +1,206 @@
+import {FULFILLED, PENDING, REJECTED} from '../utils/constants';
+import * as types from '../types/index';
+import createReducer from '../utils/createReducer';
+const initialState = {
+  allProjects: [],
+  departments: [],
+  directories: [],
+  offenders: [],
+  natures: [],
+  complaints: {open: [], close: [], all: []},
+  recentUpdates: [],
+  notifications: [],
+};
+
+const AppReducer = createReducer(initialState)({
+  [types.GET_ALL_PROJECTS + PENDING]: (state) => ({
+    ...state,
+    getAllProjectsError: null,
+    getAllProjectsLoading: true,
+    getAllProjectsLoaded: false,
+  }),
+  [types.GET_ALL_PROJECTS + FULFILLED]: (state, {payload}) => ({
+    ...state,
+    allProjects: payload.allProjects,
+    getAllProjectsLoading: false,
+    getAllProjectsLoaded: true,
+    getAllProjectsError: null,
+  }),
+  [types.GET_ALL_PROJECTS + REJECTED]: (state, {payload}) => ({
+    ...state,
+    getAllProjectsError: payload.error,
+    getAllProjectsLoading: false,
+    getAllProjectsLoaded: false,
+  }),
+  [types.GET_DEPARTMENTS_LIST + PENDING]: (state) => ({
+    ...state,
+    getDeptListError: null,
+    getDeptListLoading: true,
+    getDeptListLoaded: false,
+  }),
+  [types.GET_DEPARTMENTS_LIST + FULFILLED]: (state, {payload}) => ({
+    ...state,
+    departments: payload.departments,
+    getDeptListLoading: false,
+    getDeptListLoaded: true,
+    getDeptListError: null,
+  }),
+  [types.GET_DEPARTMENTS_LIST + REJECTED]: (state, {payload}) => ({
+    ...state,
+    getDeptListError: payload.error,
+    getDeptListLoading: false,
+    getDeptListLoaded: false,
+  }),
+  [types.GET_DIRECTORY + PENDING]: (state) => ({
+    ...state,
+    getDeptListError: null,
+    getDeptListLoading: true,
+    getDeptListLoaded: false,
+  }),
+  [types.GET_DIRECTORY + FULFILLED]: (state, {payload}) => ({
+    ...state,
+    directories: payload.directories,
+    getDeptListLoading: false,
+    getDeptListLoaded: true,
+    getDeptListError: null,
+  }),
+  [types.GET_DIRECTORY + REJECTED]: (state, {payload}) => ({
+    ...state,
+    getDeptListError: payload.error,
+    getDeptListLoading: false,
+    getDeptListLoaded: false,
+  }),
+  [types.GET_OFFENDERS_LIST + PENDING]: (state) => ({
+    ...state,
+    getDeptListError: null,
+    getDeptListLoading: true,
+    getDeptListLoaded: false,
+  }),
+  [types.GET_OFFENDERS_LIST + FULFILLED]: (state, {payload}) => ({
+    ...state,
+    offenders: payload.offenders,
+    getDeptListLoading: false,
+    getDeptListLoaded: true,
+    getDeptListError: null,
+  }),
+  [types.GET_OFFENDERS_LIST + REJECTED]: (state, {payload}) => ({
+    ...state,
+    getDeptListError: payload.error,
+    getDeptListLoading: false,
+    getDeptListLoaded: false,
+  }),
+  [types.GET_NATURES_LIST + PENDING]: (state) => ({
+    ...state,
+    getDeptListError: null,
+    getDeptListLoading: true,
+    getDeptListLoaded: false,
+  }),
+  [types.GET_NATURES_LIST + FULFILLED]: (state, {payload}) => ({
+    ...state,
+    natures: payload.natures,
+    getDeptListLoading: false,
+    getDeptListLoaded: true,
+    getDeptListError: null,
+  }),
+  [types.GET_NATURES_LIST + REJECTED]: (state, {payload}) => ({
+    ...state,
+    getDeptListError: payload.error,
+    getDeptListLoading: false,
+    getDeptListLoaded: false,
+  }),
+  [types.ADD_NEW_COMPLAINT + PENDING]: (state) => ({
+    ...state,
+    addNewComplaintError: null,
+    addNewComplaintLoading: true,
+    addNewComplaintLoaded: false,
+  }),
+  [types.ADD_NEW_COMPLAINT + FULFILLED]: (state, {payload}) => ({
+    ...state,
+    addNewComplaintLoading: false,
+    addNewComplaintLoaded: true,
+    addNewComplaintError: null,
+  }),
+  [types.ADD_NEW_COMPLAINT + REJECTED]: (state, {payload}) => ({
+    ...state,
+    addNewComplaintError: payload.error,
+    addNewComplaintLoading: false,
+    addNewComplaintLoaded: false,
+  }),
+  [types.GET_COMPLAINTS + PENDING]: (state) => ({
+    ...state,
+    getComplaintsError: null,
+    getComplaintsLoading: true,
+    getComplaintsLoaded: false,
+  }),
+  [types.GET_COMPLAINTS + FULFILLED]: (state, {payload}) => ({
+    ...state,
+    complaints: payload.complaints,
+    getComplaintsLoading: false,
+    getComplaintsLoaded: true,
+    getComplaintsError: null,
+  }),
+  [types.GET_COMPLAINTS + REJECTED]: (state, {payload}) => ({
+    ...state,
+    getComplaintsError: payload.error,
+    getComplaintsLoading: false,
+    getComplaintsLoaded: false,
+  }),
+  [types.CHANGE_PASSWORD + PENDING]: (state) => ({
+    ...state,
+    changePasswordError: null,
+    changePasswordLoading: true,
+    changePasswordLoaded: false,
+  }),
+  [types.CHANGE_PASSWORD + FULFILLED]: (state) => ({
+    ...state,
+    changePasswordLoading: false,
+    changePasswordLoaded: true,
+    changePasswordError: null,
+  }),
+  [types.CHANGE_PASSWORD + REJECTED]: (state, {payload}) => ({
+    ...state,
+    changePasswordError: payload.error,
+    changePasswordLoading: false,
+    changePasswordLoaded: false,
+  }),
+  [types.RECENT_UPDATES + PENDING]: (state) => ({
+    ...state,
+    recentUpdatesError: null,
+    recentUpdatesLoading: true,
+    recentUpdatesLoaded: false,
+  }),
+  [types.RECENT_UPDATES + FULFILLED]: (state, {payload}) => ({
+    ...state,
+    recentUpdates: payload.recentUpdates,
+    recentUpdatesLoading: false,
+    recentUpdatesLoaded: true,
+    recentUpdatesError: null,
+  }),
+  [types.RECENT_UPDATES + REJECTED]: (state, {payload}) => ({
+    ...state,
+    recentUpdatesError: payload.error,
+    recentUpdatesLoading: false,
+    recentUpdatesLoaded: false,
+  }),
+  [types.GET_NOTIFICATIONS + PENDING]: (state) => ({
+    ...state,
+    notificationsError: null,
+    notificationsLoading: true,
+    notificationsLoaded: false,
+  }),
+  [types.GET_NOTIFICATIONS + FULFILLED]: (state, {payload}) => ({
+    ...state,
+    notifications: payload.notifications,
+    notificationsLoading: false,
+    notificationsLoaded: true,
+    notificationsError: null,
+  }),
+  [types.GET_NOTIFICATIONS + REJECTED]: (state, {payload}) => ({
+    ...state,
+    notificationsError: payload.error,
+    notificationsLoading: false,
+    notificationsLoaded: false,
+  }),
+});
+
+export default AppReducer;
