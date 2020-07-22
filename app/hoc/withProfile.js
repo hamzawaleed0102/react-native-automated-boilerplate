@@ -7,7 +7,7 @@ const mapDispatchToProps = {
 
 function mapStateToProps(state) {
   return {
-    User: state.UserReducer,
+    profile: state.profileReducer,
   };
 }
 const withAuth = (Component) =>

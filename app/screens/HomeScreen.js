@@ -12,7 +12,7 @@ const HomeScreen = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  user: state.userReducer,
+  profile: state.profileReducer,
 });
 
 const mapDispatchToProps = {};

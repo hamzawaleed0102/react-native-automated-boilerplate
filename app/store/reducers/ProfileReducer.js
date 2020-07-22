@@ -8,7 +8,7 @@ const initialState = {
   user: {},
 };
 
-const UserReducer = createReducer(initialState)({
+const ProfileReducer = createReducer(initialState)({
   [types.LOGIN + PENDING]: (state) => ({
     ...state,
     errorLogin: null,
@@ -37,4 +37,4 @@ const UserReducer = createReducer(initialState)({
   }),
 });
 
-export default UserReducer;
+export default ProfileReducer;

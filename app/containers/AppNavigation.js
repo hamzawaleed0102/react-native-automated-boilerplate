@@ -79,7 +79,7 @@ const DrawerNav = () => {
   );
 };
 const AppNavigation = ({initialRouteName, ...props}) => {
-  const isLoggedIn = props.user.user.token ? true : false; // check for logged in user here
+  const isLoggedIn = props.profile.user.token ? true : false; // check for logged in user here
   return (
     <>
       {!isLoggedIn && <AuthStack initialRouteName={initialRouteName} />}
@@ -89,7 +89,7 @@ const AppNavigation = ({initialRouteName, ...props}) => {
 };
 
 const mapStateToProps = (state) => ({
-  user: state.userReducer,
+  profile: state.profileReducer,
 });
 
 const mapDispatchToProps = {};

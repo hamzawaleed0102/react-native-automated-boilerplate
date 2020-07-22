@@ -16,7 +16,7 @@ import {connect} from 'react-redux';
 import {RFPercentage} from 'react-native-responsive-fontsize';
 
 const SideMenu = (props) => {
-  const {user} = props.user;
+  const {user} = props.profile;
   return (
     <View style={styles.container}>
       <View style={styles.row}>
@@ -49,7 +49,7 @@ const SideMenu = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  user: state.userReducer,
+  profile: state.profileReducer,
 });
 
 const mapDispatchToProps = {logout};

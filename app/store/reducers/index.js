@@ -1,2 +1,2 @@
-export userReducer from './UserReducer';
+export profileReducer from './ProfileReducer';
 export appReducer from './AppReducer';
