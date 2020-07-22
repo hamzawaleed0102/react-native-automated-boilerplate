@@ -18,5 +18,11 @@ const AppTheme = {
     deviceWidth: width,
     deviceHeight: height,
   },
+  borderRadius: {
+    xs: 2,
+    sm: 4,
+    lg: 8,
+    xl: 12,
+  },
 };
 export default AppTheme;

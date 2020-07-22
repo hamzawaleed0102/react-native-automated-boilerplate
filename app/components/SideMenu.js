@@ -10,10 +10,11 @@ import {
 } from 'react-native';
 import {DrawerItemList} from '@react-navigation/drawer';
 import AppTheme from '../styles/AppTheme';
-import AppStyles, {rf} from '../styles/AppStyles';
 import Routes from '../navigations/Routes';
 import {logout} from '../store/actions/ProfileActions';
 import {connect} from 'react-redux';
+import {RFPercentage} from 'react-native-responsive-fontsize';
+
 const SideMenu = (props) => {
   const {user} = props.user;
   return (
@@ -82,18 +83,18 @@ const styles = StyleSheet.create({
   },
   hi: {
     // fontFamily: AppTheme.fonts.medium,
-    fontSize: rf(AppTheme.metrics.deviceHeight < 645 ? 2 : 7),
+    fontSize: RFPercentage(2.5),
   },
   number: {
     // fontFamily: AppTheme.fonts.light,
-    fontSize: rf(AppTheme.metrics.deviceHeight < 645 ? -1 : 2),
+    fontSize: RFPercentage(AppTheme.metrics.deviceHeight < 645 ? -1 : 1),
   },
   labelStyle: {
     // fontFamily: AppTheme.fonts.light,
     fontSize: 18,
     fontWeight: '400',
     color: 'black',
-    paddingTop: Platform.select({ios: 3, android: 0}),
+    // paddingTop: Platform.select({ios: 3, android: 0}),
     width: '100%',
   },
   logoutLabel: {

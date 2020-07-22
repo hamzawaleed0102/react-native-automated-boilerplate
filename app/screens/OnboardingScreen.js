@@ -157,9 +157,9 @@ const styles = StyleSheet.create({
   desc: {
     // fontFamily: AppTheme.fonts.light,
     textAlign: 'center',
-    lineHeight: 22,
+    // lineHeight: 22,
     // fontSize: rf(height < 645 ? 2 : 4),
-    marginTop: '2%',
+    // marginTop: '2%',
     paddingBottom: 10,
     paddingHorizontal: '10%',
   },

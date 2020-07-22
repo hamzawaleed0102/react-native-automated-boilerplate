@@ -1,22 +1,16 @@
-/* eslint-disable react-native/no-inline-styles */
-import React, {useEffect, useState} from 'react';
-import {Text, StyleSheet, Image, View} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Routes from '../navigations/Routes';
-import {Platform} from 'react-native';
 import LoginScreen from '../screens/LoginScreen';
 import OnboardingScreen from '../screens/OnboardingScreen';
-import AppTheme from '../styles/AppTheme';
-import AppStyles, {rf} from '../styles/AppStyles';
 import SideMenu from '../components/SideMenu';
-// import SecurityAlertsScreen from '../screens/SecurityAlertsScreen';
 import SignupScreen from '../screens/SignupScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import {connect} from 'react-redux';
 import ProfileScreen from '../screens/ProfileScreen';
 import HomeScreen from '../screens/HomeScreen';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -34,36 +28,7 @@ const AppStack = () => {
 
 const AuthStack = (props) => {
   return (
-    <Stack.Navigator
-      screenOptions={
-        {
-          // headerLeftContainerStyle: {marginLeft: '5%'},
-          // headerTitleAlign: 'center',
-          // headerBackTitle: 'Back',
-          // headerBackTitleStyle: {
-          //   color: 'black',
-          //   paddingBottom: 3,
-          //   fontFamily: AppTheme.fonts.medium,
-          //   marginTop: 6,
-          // },
-          // headerTitleStyle: {
-          //   color: 'black',
-          //   paddingBottom: 3,
-          //   fontFamily: AppTheme.fonts.medium,
-          //   marginTop: Platform.select({ios: 10, android: 0}),
-          //   fontSize: rf(AppTheme.metrics.deviceHeight < 645 ? 2 : 8),
-          // },
-          // headerBackImage: () => {
-          //   return (
-          //     <Icon
-          //       name="ios-arrow-back"
-          //       type="Ionicons"
-          //       style={{marginRight: 10, alignSelf: 'center'}}
-          //     />
-          //   );
-          // },
-        }
-      }>
+    <Stack.Navigator>
       <Stack.Screen
         name={Routes.Onboarding}
         options={{headerShown: false}}
@@ -95,20 +60,30 @@ const DrawerNav = () => {
     <Drawer.Navigator
       overlayColor="transparent"
       edgeWidth={60}
-      drawerType="back"
       drawerContent={(props) => <SideMenu {...props} />}>
-      <Drawer.Screen name={Routes.Home} component={HomeScreen} />
-      <Drawer.Screen name={Routes.Profile} component={ProfileScreen} />
+      <Drawer.Screen
+        name={Routes.Home}
+        options={{
+          drawerIcon: () => <Icon name="home" size={20} color="skyblue" />,
+        }}
+        component={HomeScreen}
+      />
+      <Drawer.Screen
+        name={Routes.Profile}
+        component={ProfileScreen}
+        options={{
+          drawerIcon: () => <Icon name="person" size={20} color="skyblue" />,
+        }}
+      />
     </Drawer.Navigator>
   );
 };
 const AppNavigation = ({initialRouteName, ...props}) => {
-  const isLoggedIn = props.user.user.token ? true : false;
-  console.log('isLoggedIn', isLoggedIn);
+  const isLoggedIn = props.user.user.token ? true : false; // check for logged in user here
   return (
     <>
       {!isLoggedIn && <AuthStack initialRouteName={initialRouteName} />}
-      {isLoggedIn && <DrawerNav />}
+      {isLoggedIn && <AppStack />}
     </>
   );
 };

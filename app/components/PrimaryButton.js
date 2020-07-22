@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {StyleSheet} from 'react-native';
 import AppTheme from '../styles/AppTheme';
-import {rf} from '../styles/AppStyles';
+import {RFPercentage} from 'react-native-responsive-fontsize';
 
 const PrimaryButton = ({
   onPress,
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   label: {
     color: 'white',
     // fontFamily: AppTheme.fonts.heavy,
-    marginTop: Platform.select({ios: 4, android: 0}),
-    fontSize: rf(AppTheme.metrics.deviceHeight < 645 ? 2 : 4),
+    // marginTop: Platform.select({ios: 4, android: 0}),
+    fontSize: RFPercentage(2.5),
   },
 });
