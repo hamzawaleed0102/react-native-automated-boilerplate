@@ -11,6 +11,7 @@ import {connect} from 'react-redux';
 import ProfileScreen from '../screens/ProfileScreen';
 import HomeScreen from '../screens/HomeScreen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import SplashScreen from '../screens/SplashScreen';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -29,6 +30,11 @@ const AppStack = () => {
 const AuthStack = (props) => {
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name={Routes.Splash}
+        options={{headerShown: false}}
+        component={SplashScreen}
+      />
       <Stack.Screen
         name={Routes.Onboarding}
         options={{headerShown: false}}

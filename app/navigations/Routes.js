@@ -6,5 +6,6 @@ const Routes = {
   Signup: 'Signup',
   ForgetPassword: 'ForgetPassword',
   Onboarding: 'Onboarding',
+  Splash: 'Splash',
 };
 export default Routes;
