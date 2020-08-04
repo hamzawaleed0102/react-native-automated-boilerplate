@@ -43,7 +43,7 @@ const SplashScreen = (props) => {
         source={require('../assets/loader-ring.json')}
         autoPlay
         loop
-        style={{width: '100%'}}
+        style={{width: '50%'}}
       />
     </View>
   );
