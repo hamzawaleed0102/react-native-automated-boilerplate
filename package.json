@@ -12,6 +12,11 @@
     "lint": "eslint .",
     "usb": "adb reverse tcp:8081 tcp:8081"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
   "dependencies": {
     "@react-native-community/async-storage": "^1.11.0",
     "@react-native-community/masked-view": "^0.1.10",
@@ -48,7 +53,8 @@
     "eslint": "^6.5.1",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
-    "react-test-renderer": "16.13.1"
+    "react-test-renderer": "16.13.1",
+    "husky": "^4.3.0"
   },
   "jest": {
     "preset": "react-native"
