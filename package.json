@@ -10,7 +10,8 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "usb": "adb reverse tcp:8081 tcp:8081"
+    "usb": "adb reverse tcp:8081 tcp:8081",
+    "new": "node ./script/rn.js"
   },
   "husky": {
     "hooks": {
