@@ -9,4 +9,7 @@ e.g:
 
 `yarn new component ListItem`
 
-`yarn new action getBooksList`
+`yarn new appAction getBooksList`
+
+`yarn new profileAction getBooksList`
+
