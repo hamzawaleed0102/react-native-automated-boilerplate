@@ -5,7 +5,9 @@ It also includes a node.js script that allows users to quickly create new compon
 
 e.g: 
 
-`yarn new screen HelloWorld`
+`yarn new screen Home --app`
+`yarn new screen Login --auth`
+
 
 `yarn new component ListItem`
 
