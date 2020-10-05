@@ -60,8 +60,23 @@ const actionBoilerplate = `const ACTION_NAME = (formData) => async (dispatch) =>
 export {
   ACTION_NAME,`;
 
+const stackScreenBoilerplate = {
+  '--app': `  <AppStack.Screen name={Routes.__} component={__} />
+    </AppStack.Navigator>`,
+  '--auth': `  <AuthStack.Screen name={Routes.__} component={__} />
+    </AuthStack.Navigator>`,
+};
+
+const newAppNavImports = {
+  find: '// DONOT_REMOVE: NEW_IMPORTS',
+  replace: `
+// DONOT_REMOVE: NEW_IMPORTS`,
+};
+
 module.exports = {
   actionBoilerplate,
   componentBoilerplate,
   screenBoilerplate,
+  stackScreenBoilerplate,
+  newAppNavImports,
 };

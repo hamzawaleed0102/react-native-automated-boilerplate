@@ -5,27 +5,62 @@ const DIR_COMPONENTS = './app/components/';
 const DIR_APP_ACTIONS = './app/store/actions/AppActions.js';
 const DIR_PROFILE_ACTIONS = './app/store/actions/ProfileActions.js';
 const DIR_REDUCER_TYPES = './app/store/types/index.js';
+const DIR_APP_NAVIGATION = './app/containers/AppNavigation.js';
 const {
   actionBoilerplate,
   screenBoilerplate,
   componentBoilerplate,
+  stackScreenBoilerplate,
+  newAppNavImports,
 } = require('./boilerplate.js');
 
 //Create New Screen: yarn new screen name_here
-const createScreen = (name) => {
+const createScreen = (name, screenType = '--app') => {
   // Create screen
   const filenamePostfix = 'Screen';
   const screenName = name + filenamePostfix;
   const filePath = DIR_SCREENS + name + filenamePostfix + '.js';
+  if (fs.existsSync(filePath)) {
+    return console.error(screenName + ' already exists!');
+  }
+
   const file = fs.createWriteStream(filePath);
   file.write(screenBoilerplate.replace(/___/g, screenName));
   file.end();
   //Add in Routes.js
   fs.readFile(DIR_ROUTES, {encoding: 'utf8', flag: 'r'}, (e, data) => {
-    let newRoutesObj = data.replace('};', `  ${name}: '${name}',\n};`); //RouteName:'RouteName'
+    let newRoutesObj = data.replace(
+      '};',
+      `  ${name + filenamePostfix}: '${name}',\n};`,
+    ); //RouteName:'RouteName'
     const RoutesJS = fs.createWriteStream(DIR_ROUTES);
     RoutesJS.write(newRoutesObj);
     RoutesJS.end();
+  });
+  //Add in AppNavigation
+  fs.readFile(DIR_APP_NAVIGATION, {encoding: 'utf8', flag: 'r'}, (e, data) => {
+    const navigatorType = screenType === '--app' ? 'App' : 'Auth';
+    //Add 'import' statement
+    let importStmnt =
+      'import --' +
+      filenamePostfix +
+      " from '../screens/--" +
+      filenamePostfix +
+      "';";
+    importStmnt = importStmnt.replace(/--/g, name);
+    let fileContent = data.replace(
+      newAppNavImports.find,
+      importStmnt + newAppNavImports.replace,
+    );
+
+    // Add in AppStack/AuthStack.Navigator
+    fileContent = fileContent.replace(
+      `</${navigatorType}Stack.Navigator>`,
+      stackScreenBoilerplate[screenType].replace(/__/g, name + filenamePostfix),
+    );
+    const AppNavigationJS = fs.createWriteStream(DIR_APP_NAVIGATION);
+    AppNavigationJS.write(fileContent);
+    AppNavigationJS.end();
   });
 };
 
