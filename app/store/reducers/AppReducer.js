@@ -200,7 +200,7 @@ const AppReducer = createReducer(initialState)({
     notificationsError: payload.error,
     notificationsLoading: false,
     notificationsLoaded: false,
-  }),
+  }),  
 });
 
 export default AppReducer;

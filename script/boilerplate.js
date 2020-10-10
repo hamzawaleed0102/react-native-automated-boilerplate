@@ -73,10 +73,34 @@ const newAppNavImports = {
 // DONOT_REMOVE: NEW_IMPORTS`,
 };
 
+const newReducerState = `
+    [types._TYPE_ + PENDING]: (state) => ({
+      ...state,
+      _NAME_Error: null,
+      _NAME_Loading: true,
+      _NAME_Loaded: false,
+    }),
+    [types._TYPE_ + FULFILLED]: (state, {payload}) => ({
+      ...state,
+      _NAME_: payload._NAME_,
+      _NAME_Loading: false,
+      _NAME_Loaded: true,
+      _NAME_Error: null,
+    }),
+    [types._TYPE_ + REJECTED]: (state, {payload}) => ({
+      ...state,
+      _NAME_Error: payload.error,
+      _NAME_Loading: false,
+      _NAME_Loaded: false,
+    }),
+  });
+  `;
+
 module.exports = {
   actionBoilerplate,
   componentBoilerplate,
   screenBoilerplate,
   stackScreenBoilerplate,
   newAppNavImports,
+  newReducerState,
 };

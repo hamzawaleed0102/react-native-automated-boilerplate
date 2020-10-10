@@ -6,12 +6,14 @@ const DIR_APP_ACTIONS = './app/store/actions/AppActions.js';
 const DIR_PROFILE_ACTIONS = './app/store/actions/ProfileActions.js';
 const DIR_REDUCER_TYPES = './app/store/types/index.js';
 const DIR_APP_NAVIGATION = './app/containers/AppNavigation.js';
+const DIR_APP_REDUCER = './app/store/reducers/AppReducer.js';
 const {
   actionBoilerplate,
   screenBoilerplate,
   componentBoilerplate,
   stackScreenBoilerplate,
   newAppNavImports,
+  newReducerState,
 } = require('./boilerplate.js');
 
 //Create New Screen: yarn new screen name_here
@@ -119,14 +121,43 @@ const createReduxAction = (type, actionName) => {
         let newFileContent = fileContent.replace(
           strToFind,
           `const ${reducerType} = '${reducerType}';
-export {
-  ${reducerType},`,
-        );
+          export {
+          ${reducerType},`,
+        ); 
         const ACTIONS = fs.createWriteStream(DIR_REDUCER_TYPES);
         ACTIONS.write(newFileContent);
         ACTIONS.end();
       },
     );
+
+    // Add in AppReducer.js
+    const reducerStrToFind = '});';
+    const stateStrToFind = ('};');
+    fs.readFile(
+      DIR_APP_REDUCER,
+      {encoding: 'utf8', flag: 'r'},
+      (e, fileContent) => {
+        let newBoilerplate = newReducerState.replace(
+          /_TYPE_/g,
+          reducerType,
+        )
+        .replace(
+          /_NAME_/g,
+          actionName,
+        );
+        let newFileContent = fileContent.replace(
+          reducerStrToFind,
+          newBoilerplate,
+        ).replace(
+          stateStrToFind,
+          `  ${actionName}: [], \n};`,
+        );
+        const ACTIONS = fs.createWriteStream(DIR_APP_REDUCER);
+        ACTIONS.write(newFileContent);
+        ACTIONS.end();
+      }
+    );
+
   } else {
     console.error('Invalid action type, expected: appAction, profileAction');
   }
