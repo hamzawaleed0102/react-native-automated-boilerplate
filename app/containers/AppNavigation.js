@@ -85,7 +85,13 @@ const DrawerNav = () => {
   );
 };
 const AppNavigation = ({initialRouteName, ...props}) => {
-  const isLoggedIn = props.profile.user.token ? true : false; // check for logged in user here
+  const [isLoggedIn, setLoggedIn] = React.useState(false);
+
+  React.useEffect(() => {
+    const isTokenFound = props.profile.user.token ? true : false; // check for logged in user here
+    setLoggedIn(isTokenFound);
+  }, [props.profile.user]);
+
   return (
     <>
       {!isLoggedIn && <AuthStack initialRouteName={initialRouteName} />}
