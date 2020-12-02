@@ -15,7 +15,8 @@
     "new": "node ./script/rn.js",
     "uninstall": "adb uninstall com.memorease",
     "build:a": "cd android && ./gradlew assembleRelease",
-    "install": "cd android/app/build/outputs/apk/release && adb install app-release.apk"
+    "install": "cd android/app/build/outputs/apk/release && adb install app-release.apk",
+    "clean": "rm -rf node_modules && rm -rf yarn.lock"
   },
   "husky": {
     "hooks": {
