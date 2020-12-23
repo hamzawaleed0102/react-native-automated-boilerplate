@@ -14,6 +14,11 @@ const PrimaryInputField = ({
   secureTextEntry,
   placeholder,
   icon,
+  disabled = false,
+  keyboardType = 'default',
+  returnKeyLabel = 'default',
+  returnKeyType = 'default',
+  maxLength = undefined,
 }) => {
   const [focused, setFocused] = useState(false);
   const {backgroundsLightestGray, colorsAccentMainColor} = AppTheme.colors;
@@ -40,6 +45,15 @@ const PrimaryInputField = ({
           }}
           secureTextEntry={secureTextEntry}
           style={styles.input}
+          returnKeyLabel={multiline ? 'return' : returnKeyLabel}
+          returnKeyType={multiline ? 'default' : returnKeyType}
+          autoCapitalize="none"
+          autoCompleteType="off"
+          autoCorrect={false}
+          secureTextEntry={isPasswordShown ? true : false}
+          keyboardType={keyboardType}
+          editable={disabled}
+          maxLength={maxLength}
         />
       </View>
 
